@@ -1,0 +1,30 @@
+import React from 'react'
+
+import { useSelector } from 'shared/hooks/useStateSelector'
+
+import Header from './Header'
+import { LayoutMain, LayoutNavigation, LayoutParent, LayoutWrapper } from './LayoutStyles'
+import Sidebar from './Sidebar'
+
+interface ILayoutProps {
+  children: React.ReactNode
+}
+
+const Layout: React.FC<ILayoutProps> = ({ children }) => {
+  const isMenuOpen = useSelector((state) => state.ui.isMenuOpen)
+
+  return (
+    <LayoutWrapper className={isMenuOpen ? 'main-nav-open' : 'main-nav-hide'}>
+      <LayoutNavigation>
+        <Header isMenuOpen={isMenuOpen} />
+        <Sidebar isMenuOpen={isMenuOpen} />
+      </LayoutNavigation>
+
+      <LayoutParent>
+        <LayoutMain>{children}</LayoutMain>
+      </LayoutParent>
+    </LayoutWrapper>
+  )
+}
+
+export default Layout

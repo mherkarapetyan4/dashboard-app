@@ -10,6 +10,14 @@ const RoutesRenderer: React.FC = () => {
   return (
     <Routes>
       <Route
+        path={'/'}
+        element={
+          <Layout>
+            <UsersScreen />
+          </Layout>
+        }
+      />
+      <Route
         path={'/users'}
         element={
           <Layout>
